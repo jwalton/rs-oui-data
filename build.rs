@@ -19,16 +19,15 @@ fn main() {
     )
     .unwrap();
 
-    generate_oui_data("./data/oui.csv", out, &mut used_ouis).unwrap();
-    generate_oui_data("./data/oui28.csv", out, &mut used_ouis).unwrap();
-    generate_oui_data("./data/oui36.csv", out, &mut used_ouis).unwrap();
-    generate_oui_data("./data/cid.csv", out, &mut used_ouis).unwrap();
-    generate_oui_data("./data/iab.csv", out, &mut used_ouis).unwrap();
+    generate_oui_data("data/oui.csv", out, &mut used_ouis).unwrap();
+    generate_oui_data("data/oui28.csv", out, &mut used_ouis).unwrap();
+    generate_oui_data("data/oui36.csv", out, &mut used_ouis).unwrap();
+    generate_oui_data("data/cid.csv", out, &mut used_ouis).unwrap();
+    generate_oui_data("data/iab.csv", out, &mut used_ouis).unwrap();
 
     out.write_all("};\n".as_bytes()).unwrap();
 
     println!("cargo:rerun-if-changed=build.rs");
-    println!("cargo:rerun-if-changed=data/oui.csv");
 }
 
 fn generate_oui_data(
@@ -58,6 +57,8 @@ fn generate_oui_data(
         );
         out.write_all(oui_data.as_bytes())?;
     }
+
+    println!("cargo:rerun-if-changed={path}");
 
     Ok(())
 }
