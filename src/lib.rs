@@ -57,7 +57,7 @@ pub fn lookup(mac: &str) -> Option<&'static OuiData> {
         return lookup_prefix(mac);
     }
 
-    let mac = mac.to_uppercase().replace(':', "").replace('-', "");
+    let mac = mac.to_uppercase().replace([':', '-'], "");
     lookup_prefix(&mac)
 }
 
