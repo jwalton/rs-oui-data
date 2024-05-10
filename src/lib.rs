@@ -53,11 +53,11 @@ impl OuiData {
 
 /// Retrieve the OUI record for a given MAC address.
 pub fn lookup(mac: &str) -> Option<&'static OuiData> {
-    if !mac.contains(':') && mac.chars().all(|c| matches!(c, '0'..='9' | 'A'..='F')) {
+    if mac.chars().all(|c| matches!(c, '0'..='9' | 'A'..='F')) {
         return lookup_prefix(mac);
     }
 
-    let mac = mac.to_uppercase().replace(':', "");
+    let mac = mac.to_uppercase().replace(':', "").replace('-', "");
     lookup_prefix(&mac)
 }
 
@@ -85,6 +85,12 @@ mod test {
     #[test]
     fn should_lookup_entry_from_oui() {
         let record = lookup("00:00:00:00:00:00").unwrap();
+        assert_eq!(record.organization(), "XEROX CORPORATION");
+    }
+
+    #[test]
+    fn should_accept_mac_with_dashes() {
+        let record = lookup("00-00-00-00-00-00").unwrap();
         assert_eq!(record.organization(), "XEROX CORPORATION");
     }
 
