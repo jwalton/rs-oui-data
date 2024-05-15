@@ -13,16 +13,16 @@
 #[derive(Debug, Copy, Clone)]
 pub enum Registry {
     /// MA-L 24-bit OUI (Organizationally Unique Identifier) registry.
-    MAL,
+    Mal,
     /// MA-M 28-bit registry.
-    MAM,
+    Mam,
     /// MA-S 36-bit registry.
-    MAS,
+    Mas,
     /// CID 24-bit registry. Entries in the CID registry are used for cases where
     /// unique MAC addresses are not required.
-    CID,
+    Cid,
     /// IAB (Individual Address Blocks) registry.
-    IAB,
+    Iab,
 }
 
 /// A record from the OUI database.

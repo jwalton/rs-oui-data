@@ -65,11 +65,11 @@ fn generate_oui_data(
 
 fn get_registry(registry: &str) -> &'static str {
     match registry {
-        "MA-L" => "Registry::MAL",
-        "MA-M" => "Registry::MAM",
-        "MA-S" => "Registry::MAS",
-        "CID" => "Registry::CID",
-        "IAB" => "Registry::IAB",
+        "MA-L" => "Registry::Mal",
+        "MA-M" => "Registry::Mam",
+        "MA-S" => "Registry::Mas",
+        "CID" => "Registry::Cid",
+        "IAB" => "Registry::Iab",
         _ => panic!("Unknown registry: {registry}"),
     }
 }
